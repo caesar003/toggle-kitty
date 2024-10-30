@@ -1,0 +1,22 @@
+#!/bin/bash
+
+VERSION="1.0.1"
+
+if [[ "$1" == "--version" || "$1" == "-v" ]]; then
+    echo "toggle-kitty version $VERSION"
+    exit 0
+fi
+
+if pgrep -x "kitty" >/dev/null; then
+	active_win_id=$(xdotool getactivewindow)
+	kitty_win_id=$(xdotool search --class kitty)
+	if [ "$kitty_win_id" = "" ]; then
+		exit 0
+	fi
+
+	if [ "$active_win_id" = "$kitty_win_id" ]; then
+		xdotool windowminimize "$kitty_win_id"
+	else
+		xdotool windowactivate "$kitty_win_id"
+	fi
+fi
