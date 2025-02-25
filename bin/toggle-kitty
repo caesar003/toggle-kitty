@@ -1,10 +1,24 @@
 #!/bin/bash
 
-VERSION="1.0.1"
+VERSION="1.1.0"
 
 if [[ "$1" == "--version" || "$1" == "-v" ]]; then
-    echo "toggle-kitty version $VERSION"
-    exit 0
+	echo "toggle-kitty version $VERSION"
+	exit 0
+fi
+
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	echo "Warning: Wayland detected!"
+	echo "toggle-kitty relies on xdotool, which does not work under Wayland."
+	echo "For best results, log in using an X11 session instead."
+	exit 1
+fi
+
+
+if ! command -v xdotool &>/dev/null; then
+	echo "Error: xdotool is not installed. Install it with: sudo apt install -y xdotool"
+	exit 1
 fi
 
 if pgrep -x "kitty" >/dev/null; then

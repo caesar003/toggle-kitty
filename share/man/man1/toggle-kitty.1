@@ -1,44 +1,62 @@
-.\" Manpage for toggle-kitty
-.TH TOGGLE-KITTY 1 "October 2024"
+.TH TOGGLE-KITTY 1 "February 2025" "toggle-kitty" "User Commands"
+
 .SH NAME
-toggle-kitty \- Toggle the Kitty terminal emulator to behave like a dropdown terminal.
+.B toggle-kitty
+\- toggle the visibility of the Kitty terminal emulator
 
 .SH SYNOPSIS
 .B toggle-kitty
 
 .SH DESCRIPTION
 .B toggle-kitty
-is a script that toggles the visibility of the Kitty terminal emulator. When executed, it checks if Kitty is running and either minimizes it or brings it to the front, allowing it to function as a dropdown terminal.
+is a lightweight script that allows users to quickly show or hide the Kitty terminal emulator, mimicking the behavior of a dropdown terminal.
 
-.SH REQUIREMENTS
-Ensure you have
-.B xdotool
-installed to manage window states. You can install it using:
-.RS
-.B sudo apt install -y xdotool
-.RES
+The script checks if Kitty is running and either minimizes or activates its window accordingly. It requires X11 and does not function properly in a Wayland session due to `xdotool` limitations.
 
 .SH USAGE
-To toggle the Kitty terminal dropdown functionality, simply run:
-.B toggle-kitty
+Run the command:
+.PP
+.EX
+toggle-kitty
+.EE
 
-.SH EXIT STATUS
-.B 0
-if the Kitty window is minimized or brought to front successfully.
-.B 1
-if the Kitty terminal is not running.
+.SH BEHAVIOR
+- If Kitty is running and active: The script minimizes the Kitty window.
+- If Kitty is running but inactive: The script brings the Kitty window to the foreground.
 
-.SH DEPENDENCIES
-This script requires:
-.RI (1) 
-.B kitty
-for the terminal emulator functionality.
-.RI (2) 
-.B xdotool
-for window management control (to minimize or activate the terminal).
+.SH KEYBINDING CUSTOMIZATION
+To bind `toggle-kitty` to a keyboard shortcut in Debian/Ubuntu:
+.PP
+1. Open **Settings** → **Keyboard Shortcuts**.
+2. Add a new shortcut:
+   - Name: `Toggle Kitty`
+   - Command: `toggle-kitty`
+   - Shortcut: `Ctrl + F8` (or any preferred combination)
+3. Save and apply the shortcut.
+
+For other desktop environments, use the appropriate keyboard settings.
+
+.SH TROUBLESHOOTING
+- **Kitty Not Found**: Ensure Kitty is installed and running.
+- **xdotool Command Not Found**: Install `xdotool` using:
+  .EX
+  sudo apt install -y xdotool
+  .EE
+- **Not Working in Wayland**: 
+  .PP
+  toggle-kitty relies on `xdotool`, which is not compatible with Wayland. If you are using a Wayland session, the script will not function properly.
+  .PP
+  To use `toggle-kitty`, log in using an X11 session instead.
+
+.SH FILES
+.B ~/.bin/toggle-kitty
+- If installed manually, ensure this path is in your `PATH` variable.
 
 .SH AUTHOR
-Written by caesar003 - https://github.com/caesar003.
+Developed by caesar003 - https://github.com/caesar003
+
+.SH LICENSE
+This project is licensed under the MIT License.
 
 .SH SEE ALSO
 .B kitty(1),

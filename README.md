@@ -27,7 +27,17 @@ Currently, **toggle-kitty** does not function as intended under the Wayland disp
 
 You can install **toggle-kitty** in one of the following ways:
 
-### Option 1: Clone the Repository
+### Option 1: Install via `.deb` Package (Recommended)
+
+Download the `.deb` package from the [releases page](https://github.com/caesar003/toggle-kitty/releases).
+
+After downloading, install it using:
+
+```bash
+sudo apt install ./toggle-kitty.deb
+```
+
+### Option 2: Manual Installation
 
 1. Clone this repository:
 
@@ -41,15 +51,13 @@ You can install **toggle-kitty** in one of the following ways:
     ./install.sh
     ```
 
-### Option 2: Download the .deb Package
-
-Alternatively, you can download the `.deb` package from the [releases page](https://github.com/caesar003/toggle-kitty/releases).
-
-After downloading, install it using:
-
-```bash
-sudo apt install ./toggle-kitty.deb
-```
+3. Alternatively, you can manually copy the script:
+    ```bash
+    mkdir -p ~/.bin
+    cp bin/toggle-kitty ~/.bin/
+    chmod +x ~/.bin/toggle-kitty
+    ```
+    Ensure `~/.bin` is in your `PATH` for global access.
 
 ## Usage
 
@@ -66,13 +74,18 @@ toggle-kitty
 
 This allows quick toggling of the Kitty terminal without needing to navigate manually.
 
-## Example
+## Keybinding Customization (Recommended)
 
-Run the script as shown below to toggle the Kitty terminal:
+To integrate `toggle-kitty` into your workflow, you can assign a keybinding. Below are steps for Debian/Ubuntu:
 
-```bash
-toggle-kitty
-```
+1. Open **Settings** → **Keyboard Shortcuts**.
+2. Add a new shortcut:
+   - Name: `Toggle Kitty`
+   - Command: `toggle-kitty`
+   - Shortcut: `Ctrl + F8` (or any preferred combination)
+3. Save and apply the shortcut.
+
+For other desktop environments, look for the **Keyboard Shortcuts** settings.
 
 ## Troubleshooting
 
@@ -87,3 +100,4 @@ This project is licensed under the MIT License.
 ## Author
 
 Developed by caesar003.
+
